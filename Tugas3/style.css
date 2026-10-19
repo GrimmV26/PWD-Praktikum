@@ -76,6 +76,13 @@ aside {
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45);
 }
 
+.aside-profile {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 footer { 
     background-color: rgba(5, 10, 18, 0.95); 
     backdrop-filter: blur(4px);
@@ -270,25 +277,64 @@ p {
 }
 
 .galeri {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); 
     gap: 12px;
     margin-top: 12px;
 }
 
 .galeri-item {
+    position: relative;
+    display: block;
     background-color: rgba(11, 24, 43, 0.75);
     border: 1px solid rgba(28, 61, 102, 0.8);
-    border-radius: 4px;
-    padding: 8px;
-    text-align: center;
+    border-radius: 6px;
+    overflow: hidden; 
+    text-decoration: none;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.galeri-item:hover {
+    transform: scale(1.05);
+    border-color: #38bdf8;
+    box-shadow: 0 8px 20px rgba(56, 189, 248, 0.35);
+    z-index: 2;
 }
 
 .galeri-item img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 3px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     display: block;
+}
+
+.rating-badge {
+    position: absolute;
+    bottom: 8px;
+    left: 8px;
+    background: rgba(6, 11, 20, 0.75);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    color: #ffffff;
+    font-size: 0.82rem;
+    font-weight: 700;
+    padding: 3px 7px;
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    pointer-events: none;
+}
+
+.rating-badge .star {
+    color: #f59e0b;
+    font-size: 0.9rem;
+}
+
+.rating-badge .love {
+    color: #ff0099;
+    font-size: 0.9rem;
 }
 
 .galeri-caption {
@@ -296,6 +342,103 @@ p {
     font-size: 0.82rem;
     color: #8da9c7;
     margin-top: 6px;
+}
+
+.galeri1 {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 14px;
+}
+
+.galeri-item1 {
+    display: block;
+    width: 100%;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid rgba(28, 61, 102, 0.8);
+    background-color: rgba(11, 24, 43, 0.75);
+    text-decoration: none;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.review-banner {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+}
+
+.review-banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(to bottom, rgba(6, 12, 22, 0.75) 0%, transparent 100%);
+    z-index: 1;
+    pointer-events: none;
+}
+
+.review-banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+
+.review-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 12px 14px;
+    background: linear-gradient(to top, rgba(6, 12, 22, 0.95) 0%, rgba(6, 12, 22, 0.5) 70%, transparent 100%);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.review-game-title {
+    color: #38bdf8;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.review-headline {
+    margin: 0;
+    color: #ffffff;
+    font-size: 1.05rem;
+    font-weight: 700;
+    line-height: 1.3;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.85);
+    transition: color 0.3s ease;
+}
+
+.galeri-item1:hover .review-headline {
+    color: #a5f3fc;
+}
+
+.galeri-item1:hover {
+    transform: scale(1.03); 
+    border-color: #38bdf8; 
+    box-shadow: 0 6px 18px rgba(56, 189, 248, 0.3);
+}
+
+.galeri-item1:hover .review-banner img {
+    transform: scale(1.06); 
+}
+
+.galeri-item1:hover .review-title {
+    color: #38bdf8; 
 }
 
 .aside-img-wrapper {
@@ -308,18 +451,37 @@ p {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 600px) {
     section { 
         grid-template-columns: 1fr;
-        padding: 15px;
-        gap: 18px;
+        padding: 8px 6px; 
+        gap: 12px;
+    }
+
+    article, aside { 
+        padding: 12px 10px; 
+    }
+
+    .galeri {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .galeri-item {
+        padding: 6px;
+    }
+
+    .galeri-item img {
+        width: 100%;
+        height: auto;
+        max-height: 220px;
+        object-fit: cover;
     }
 
     nav {
         flex-direction: column;
-        gap: 12px;
-        padding: 12px 15px;
-        text-align: center;
+        gap: 10px;
+        padding: 10px;
     }
 
     .menu {
