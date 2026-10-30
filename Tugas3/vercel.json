@@ -1,9 +1,0 @@
-{
-    "cleanUrls": true,
-    "rewrites": [
-        {
-            "source": "/article",
-            "destination": "../Tugas4/article.html"
-        }
-    ]
-}
