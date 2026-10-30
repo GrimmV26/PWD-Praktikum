@@ -1,12 +1,9 @@
 {
+    "cleanUrls": true,
     "rewrites": [
         {
-            "source": "/",
-            "destination": "/Tugas3/index.html"
-        },
-        {
             "source": "/article",
-            "destination": "/Tugas4/article.html"
+            "destination": "../Tugas4/article.html"
         }
     ]
 }
